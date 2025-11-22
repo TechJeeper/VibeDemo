@@ -21,6 +21,36 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; /* Prevent scrollbars from potential animation overflow */
+}
+
+/* Northern Lights Background */
+.aurora-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 50% 20%, rgba(0, 255, 153, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 40%, rgba(128, 0, 128, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 20% 60%, rgba(0, 204, 255, 0.2) 0%, transparent 50%);
+    animation: aurora-move 15s ease-in-out infinite alternate;
+    filter: blur(30px);
+}
+
+@keyframes aurora-move {
+    0% {
+        background-position: 0% 0%;
+        transform: scale(1);
+    }
+    100% {
+        background-position: 10% 10%;
+        transform: scale(1.1);
+    }
 }
 
 .container {
@@ -28,6 +58,8 @@ body {
     max-width: 600px;
     padding: 2rem;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 header {
@@ -48,38 +80,49 @@ h1 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
     letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 p {
     color: var(--secondary-accent);
     font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .links-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
 }
 
 .link-card {
     display: block;
-    background-color: var(--bg-color);
+    background-color: rgba(26, 46, 64, 0.8); /* Semi-transparent bg color */
     color: var(--text-color);
     text-decoration: none;
     padding: 1.2rem;
     border: 3px solid var(--accent-color);
-    border-radius: 10px;
+    border-radius: 50px; /* Pill shape for fun */
     font-weight: 800;
     font-size: 1.25rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px); /* Glassmorphism feel */
+    position: relative;
+    overflow: hidden;
 }
 
+/* Fun hover effects */
 .link-card:hover {
     background-color: var(--accent-color);
     color: var(--bg-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 20px rgba(242, 159, 58, 0.6); /* Glowing neon effect */
+    border-color: #fff;
+}
+
+.link-card:active {
+    transform: translateY(-2px) scale(0.98);
 }
 
 footer {
