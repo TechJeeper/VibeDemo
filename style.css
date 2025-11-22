@@ -25,32 +25,15 @@ body {
     overflow-x: hidden; /* Prevent scrollbars from potential animation overflow */
 }
 
-/* Northern Lights Background */
-.aurora-bg {
+/* Canvas Background */
+#bg-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: var(--bg-color);
-    background-image:
-        radial-gradient(circle at 50% 20%, rgba(0, 255, 153, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 40%, rgba(128, 0, 128, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 20% 60%, rgba(0, 204, 255, 0.2) 0%, transparent 50%);
-    animation: aurora-move 15s ease-in-out infinite alternate;
-    filter: blur(30px);
-}
-
-@keyframes aurora-move {
-    0% {
-        background-position: 0% 0%;
-        transform: scale(1);
-    }
-    100% {
-        background-position: 10% 10%;
-        transform: scale(1.1);
-    }
+    background-color: var(--bg-color); /* Fallback or base color */
 }
 
 .container {
@@ -123,6 +106,15 @@ p {
 
 .link-card:active {
     transform: translateY(-2px) scale(0.98);
+}
+
+.social-feed {
+    margin-top: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(26, 46, 64, 0.5);
+    padding: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 footer {
